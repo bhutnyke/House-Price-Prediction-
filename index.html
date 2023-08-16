@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>House Price prediction</title>
+   <style>
+    /* Targets the body elements and sets the CSS properties for it */
+      body {
+            font-family: Arial, sans-serif;
+            background-color: #33ffa9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        /* Sets the CSS properties for the form container */
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #33ffbe;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Sets the CSS properties for the labels associated with input fields */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        /* Targets input elements of type "text" and sets the CSS properties for them */
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        /* Targets input elements of type "submit" and sets the CSS properties for them */
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+  </head>
+<body>
+   <div class=" bg-nav d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">House Price Prediction</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="abt">About</a>
+    <a class="p-2 text-dark" href="/register">Register</a>
+   <!-- <a class="p-2 text-dark" href="#">Support</a>
+    <a class="p-2 text-dark" href="#">Pricing</a> -->
+  </nav>
+  <a class="btn btn-outline-primary" href="/logout">Log Out</a>
+</div>
+<h1>House Price Prediction</h1>
+
+    <!--flashing
+
+                  {% if error %}
+                     <p><strong>Error:</strong> {{ error }}
+                  {% endif %}  -->
+
+<!-- flashing
+     {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li<{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}    -->
+
+
+    <!-- Creates a container div with the class "container" to hold the form elements -->
+    <div class="container">
+        <!-- This line starts a form with an action attribute specifying the URL to which
+             the form data will be submitted and a method attribute indicatiing that the
+             form data will be submitted and a method attribute indicating that the form
+             data will be sent usinf the POST method -->
+        <form action="/predict" method="POST">
+            <!-- Creating a label for the feature names and displaying the text -->
+            <label for="lot_area">Lot Area:(Total Area of Property)</label>
+            <!-- Creates a text input field. Users can enter the value -->
+            <input type="number" id="lot_area" name="lot_area"><br><br>
+            <label for="mas_vnr_area">Masonry Veneer Area:</label>
+            <input type="number" id="mas_vnr_area" name="mas_vnr_area"><br><br>
+            <label for="bsmt_unf_sf">Basement Unfinished Area:</label>
+            <input type="number" id="bsmt_unf_sf" name="bsmt_unf_sf"><br><br>
+            <label for="total_bsmt_sf">Total Basement Area:</label>
+            <input type="number" id="total_bsmt_sf" name="total_bsmt_sf"><br><br>
+            <label for="first_flr_sf">First Floor Area:</label>
+            <input type="number" id="first_flr_sf" name="first_flr_sf"><br><br>
+            <label for="second_flr_sf">Second Floor Area:</label>
+            <input type="number" id="second_flr_sf" name="second_flr_sf"><br><br>
+            <label for="grliv_area">Above Ground Living Area:</label>
+            <input type="number" id="grliv_area" name="grliv_area"><br><br>
+            <label for="garage_area">Garage Area:</label>
+            <input type="number" id="garage_area" name="garage_area"><br><br>
+            <label for="wood_deck_sf">Wood Deck Area:</label>
+            <input type="number" id="wood_deck_sf" name="wood_deck_sf"><br><br>
+            <label for="open_porch_sf">Open Porch Area:</label>
+            <input type="number" id="open_porch_sf" name="open_porch_sf"><br><br>
+            <!-- Creates a submit button that users can click to submit the form data -->
+            <input type="submit" value="Predict">
+        </form>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
